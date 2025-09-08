@@ -3,9 +3,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Badge } from "../components/ui/badge";
-import { FileText, Search, Eye, Download, Send, Calendar, Phone } from "lucide-react";
+import { FileText, Search, Eye, Download, Send, Calendar, Phone, Image } from "lucide-react";
 import { mockDashboardData } from "../data/mockData";
-import { downloadPrescriptionPDF } from "../utils/pdfGenerator";
+import { downloadPrescriptionPDF, downloadPrescriptionImage } from "../utils/pdfGenerator";
 
 const Dashboard = () => {
   const [prescriptions, setPrescriptions] = useState([]);
