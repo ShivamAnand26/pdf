@@ -72,6 +72,31 @@ const PrescriptionForm = ({ data, onChange }) => {
     });
   };
 
+  const handleGeneratePDF = () => {
+    if (!data.patientName || !data.contactPhone) {
+      toast({
+        title: "Validation Error",
+        description: "Patient name and contact phone are required",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    try {
+      downloadPrescriptionPDF(data);
+      toast({
+        title: "Success",
+        description: "Prescription PDF downloaded successfully"
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to generate PDF. Please try again.",
+        variant: "destructive"
+      });
+    }
+  };
+
   const handleWhatsAppSend = () => {
     if (!data.patientName || !data.contactPhone) {
       toast({
