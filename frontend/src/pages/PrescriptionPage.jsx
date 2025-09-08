@@ -18,17 +18,17 @@ const PrescriptionPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900">Create Prescription</h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
+        <div className="mb-6 lg:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Create Prescription</h1>
           <p className="text-slate-600 mt-2">
             Fill in the patient details and prescription information below
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="flex flex-col xl:grid xl:grid-cols-2 gap-6 lg:gap-8">
           {/* Prescription Form */}
-          <div className="space-y-6">
+          <div className="order-1 xl:order-1">
             <PrescriptionForm
               data={prescriptionData}
               onChange={handleDataChange}
@@ -36,7 +36,7 @@ const PrescriptionPage = () => {
           </div>
 
           {/* Live Preview */}
-          <div className="lg:sticky lg:top-24">
+          <div className="order-2 xl:order-2 xl:sticky xl:top-24">
             <LivePreview
               key={previewKey}
               data={prescriptionData}
