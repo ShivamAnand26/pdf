@@ -5,8 +5,9 @@ import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
-import { Plus, Trash2, Save, Send, FileText } from "lucide-react";
+import { Plus, Trash2, Save, Send, FileText, Download } from "lucide-react";
 import { useToast } from "../hooks/use-toast";
+import { downloadPrescriptionPDF } from "../utils/pdfGenerator";
 
 const PrescriptionForm = ({ data, onChange }) => {
   const { toast } = useToast();
