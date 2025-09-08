@@ -338,6 +338,10 @@ const PrescriptionForm = ({ data, onChange }) => {
           <Save className="h-4 w-4" />
           <span>Save to Records</span>
         </Button>
+        <Button onClick={handleGenerateImage} variant="outline" className="flex items-center space-x-2">
+          <Image className="h-4 w-4" />
+          <span>Download Image</span>
+        </Button>
         <Button onClick={handleGeneratePDF} variant="outline" className="flex items-center space-x-2">
           <Download className="h-4 w-4" />
           <span>Download PDF</span>
