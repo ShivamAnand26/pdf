@@ -260,8 +260,8 @@ const PrescriptionForm = ({ data, onChange }) => {
         </CardHeader>
         <CardContent className="space-y-4">
           {medicines.map((medicine, index) => (
-            <div key={index} className="grid grid-cols-1 md:grid-cols-5 gap-4 p-4 border rounded-lg">
-              <div>
+            <div key={index} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 p-4 border rounded-lg">
+              <div className="sm:col-span-2 lg:col-span-1">
                 <Label>Medicine Name</Label>
                 <Input
                   value={medicine.name}
@@ -297,12 +297,12 @@ const PrescriptionForm = ({ data, onChange }) => {
                   className="mt-1"
                 />
               </div>
-              <div className="flex items-end">
+              <div className="flex items-end sm:col-span-2 lg:col-span-1">
                 <Button
                   onClick={() => removeMedicine(index)}
                   variant="outline"
                   size="sm"
-                  className="text-red-600 hover:text-red-700"
+                  className="text-red-600 hover:text-red-700 w-full sm:w-auto"
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
