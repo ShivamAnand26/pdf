@@ -20,7 +20,7 @@ const LivePreview = ({ data }) => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="bg-white border rounded-lg p-6 shadow-sm">
+        <div id="prescription-preview" className="bg-white border rounded-lg p-6 shadow-sm">
           {/* Header */}
           <div className="border-b pb-6 mb-6">
             <div className="flex items-center justify-between">
