@@ -122,7 +122,7 @@ export const generatePrescriptionPDF = (prescriptionData) => {
       med.duration || '—'
     ]);
     
-    doc.autoTable({
+    autoTable(doc, {
       startY: yPosition,
       head: [['Medicine', 'Dosage', 'Frequency', 'Duration']],
       body: tableData,
