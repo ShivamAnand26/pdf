@@ -313,6 +313,10 @@ const PrescriptionForm = ({ data, onChange }) => {
           <Save className="h-4 w-4" />
           <span>Save to Records</span>
         </Button>
+        <Button onClick={handleGeneratePDF} variant="outline" className="flex items-center space-x-2">
+          <Download className="h-4 w-4" />
+          <span>Download PDF</span>
+        </Button>
         <Button onClick={handleWhatsAppSend} className="flex items-center space-x-2 bg-green-600 hover:bg-green-700">
           <Send className="h-4 w-4" />
           <span>Send via WhatsApp</span>
