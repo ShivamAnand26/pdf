@@ -72,7 +72,7 @@ const PrescriptionForm = ({ data, onChange }) => {
     });
   };
 
-  const handleGeneratePDF = () => {
+  const handleGeneratePDF = async () => {
     if (!data.patientName || !data.contactPhone) {
       toast({
         title: "Validation Error",
@@ -83,7 +83,7 @@ const PrescriptionForm = ({ data, onChange }) => {
     }
 
     try {
-      downloadPrescriptionPDF(data);
+      await downloadPrescriptionPDF('prescription-preview', data.patientName);
       toast({
         title: "Success",
         description: "Prescription PDF downloaded successfully"
@@ -92,6 +92,31 @@ const PrescriptionForm = ({ data, onChange }) => {
       toast({
         title: "Error",
         description: "Failed to generate PDF. Please try again.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const handleGenerateImage = async () => {
+    if (!data.patientName || !data.contactPhone) {
+      toast({
+        title: "Validation Error",
+        description: "Patient name and contact phone are required",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    try {
+      await downloadPrescriptionImage('prescription-preview', data.patientName);
+      toast({
+        title: "Success",
+        description: "Prescription image downloaded successfully"
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to generate image. Please try again.",
         variant: "destructive"
       });
     }
