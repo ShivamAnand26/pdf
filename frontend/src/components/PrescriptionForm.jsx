@@ -333,20 +333,20 @@ const PrescriptionForm = ({ data, onChange }) => {
       </Card>
 
       {/* Action Buttons */}
-      <div className="flex flex-col sm:flex-row gap-4">
-        <Button onClick={handleSave} variant="outline" className="flex items-center space-x-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <Button onClick={handleSave} variant="outline" className="flex items-center justify-center space-x-2">
           <Save className="h-4 w-4" />
           <span>Save to Records</span>
         </Button>
-        <Button onClick={handleGenerateImage} variant="outline" className="flex items-center space-x-2">
+        <Button onClick={handleGenerateImage} variant="outline" className="flex items-center justify-center space-x-2">
           <Image className="h-4 w-4" />
           <span>Download Image</span>
         </Button>
-        <Button onClick={handleGeneratePDF} variant="outline" className="flex items-center space-x-2">
+        <Button onClick={handleGeneratePDF} variant="outline" className="flex items-center justify-center space-x-2">
           <Download className="h-4 w-4" />
           <span>Download PDF</span>
         </Button>
-        <Button onClick={handleWhatsAppSend} className="flex items-center space-x-2 bg-green-600 hover:bg-green-700">
+        <Button onClick={handleWhatsAppSend} className="flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700">
           <Send className="h-4 w-4" />
           <span>Send via WhatsApp</span>
         </Button>
