@@ -145,7 +145,7 @@ export const generatePrescriptionPDF = (prescriptionData) => {
       margin: { left: 20, right: 20 }
     });
     
-    yPosition = doc.lastAutoTable.finalY + 20;
+    yPosition = doc.lastAutoTable ? doc.lastAutoTable.finalY + 20 : yPosition + 20;
   }
   
   // Additional Notes Section
