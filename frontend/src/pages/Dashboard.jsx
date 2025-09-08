@@ -45,8 +45,33 @@ const Dashboard = () => {
   };
 
   const handleDownloadPDF = (prescription) => {
-    // Mock PDF download functionality
-    console.log("Downloading PDF for:", prescription.patientName);
+    try {
+      // For saved prescriptions, we need to get the full prescription data
+      // In a real app, this would come from the backend
+      const fullPrescriptionData = {
+        patientName: prescription.patientName,
+        contactPhone: prescription.contactPhone,
+        age: "30", // Mock data since we don't have full prescription details
+        gender: "male",
+        symptoms: "Follow-up consultation for previously prescribed medication.",
+        medicines: [
+          {
+            name: "Sample Medicine",
+            dosage: "500mg",
+            frequency: "2x daily",
+            duration: "7 days"
+          }
+        ],
+        additionalNotes: "Please complete the full course of medication."
+      };
+      
+      downloadPrescriptionPDF(fullPrescriptionData);
+      
+      // Show success toast - you'll need to add toast functionality here
+      console.log("PDF downloaded successfully for:", prescription.patientName);
+    } catch (error) {
+      console.error("Failed to generate PDF:", error);
+    }
   };
 
   const handleResendWhatsApp = (prescription) => {
