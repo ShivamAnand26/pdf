@@ -107,9 +107,9 @@ const Dashboard = () => {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mb-6 lg:mb-8">
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4 lg:p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-600">Total Prescriptions</p>
@@ -123,7 +123,7 @@ const Dashboard = () => {
           </Card>
 
           <Card>
-            <CardContent className="p-6">
+            <CardContent className="p-4 lg:p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-600">Sent Today</p>
@@ -141,8 +141,8 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card>
-            <CardContent className="p-6">
+          <Card className="sm:col-span-2 lg:col-span-1">
+            <CardContent className="p-4 lg:p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-600">Draft Prescriptions</p>
@@ -159,8 +159,8 @@ const Dashboard = () => {
         </div>
 
         {/* Search and Filters */}
-        <Card className="mb-6">
-          <CardContent className="p-6">
+        <Card className="mb-4 lg:mb-6">
+          <CardContent className="p-4 lg:p-6">
             <div className="flex items-center space-x-4">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
@@ -180,9 +180,9 @@ const Dashboard = () => {
           <CardHeader>
             <CardTitle>Recent Prescriptions</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-0">
             {filteredPrescriptions.length === 0 ? (
-              <div className="text-center py-12">
+              <div className="text-center py-12 px-4">
                 <FileText className="h-12 w-12 text-slate-400 mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-slate-900 mb-2">No prescriptions found</h3>
                 <p className="text-slate-600">
@@ -190,89 +190,157 @@ const Dashboard = () => {
                 </p>
               </div>
             ) : (
-              <div className="overflow-hidden">
-                <table className="w-full">
-                  <thead className="bg-slate-50">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-sm font-medium text-slate-700">Patient</th>
-                      <th className="px-6 py-3 text-left text-sm font-medium text-slate-700">Contact</th>
-                      <th className="px-6 py-3 text-left text-sm font-medium text-slate-700">Date</th>
-                      <th className="px-6 py-3 text-left text-sm font-medium text-slate-700">Status</th>
-                      <th className="px-6 py-3 text-right text-sm font-medium text-slate-700">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-200">
-                    {filteredPrescriptions.map((prescription) => (
-                      <tr key={prescription.id} className="hover:bg-slate-50">
-                        <td className="px-6 py-4">
-                          <div className="flex items-center space-x-3">
-                            <div className="flex-shrink-0">
-                              <div className="bg-blue-100 p-2 rounded-full">
-                                <FileText className="h-4 w-4 text-blue-600" />
+              <>
+                {/* Desktop Table */}
+                <div className="hidden md:block overflow-hidden">
+                  <table className="w-full">
+                    <thead className="bg-slate-50">
+                      <tr>
+                        <th className="px-6 py-3 text-left text-sm font-medium text-slate-700">Patient</th>
+                        <th className="px-6 py-3 text-left text-sm font-medium text-slate-700">Contact</th>
+                        <th className="px-6 py-3 text-left text-sm font-medium text-slate-700">Date</th>
+                        <th className="px-6 py-3 text-left text-sm font-medium text-slate-700">Status</th>
+                        <th className="px-6 py-3 text-right text-sm font-medium text-slate-700">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200">
+                      {filteredPrescriptions.map((prescription) => (
+                        <tr key={prescription.id} className="hover:bg-slate-50">
+                          <td className="px-6 py-4">
+                            <div className="flex items-center space-x-3">
+                              <div className="flex-shrink-0">
+                                <div className="bg-blue-100 p-2 rounded-full">
+                                  <FileText className="h-4 w-4 text-blue-600" />
+                                </div>
+                              </div>
+                              <div>
+                                <p className="text-sm font-medium text-slate-900">
+                                  {prescription.patientName}
+                                </p>
                               </div>
                             </div>
-                            <div>
-                              <p className="text-sm font-medium text-slate-900">
-                                {prescription.patientName}
-                              </p>
+                          </td>
+                          <td className="px-6 py-4">
+                            <div className="flex items-center space-x-2">
+                              <Phone className="h-4 w-4 text-slate-400" />
+                              <span className="text-sm text-slate-900">{prescription.contactPhone}</span>
                             </div>
-                          </div>
-                        </td>
-                        <td className="px-6 py-4">
-                          <div className="flex items-center space-x-2">
-                            <Phone className="h-4 w-4 text-slate-400" />
-                            <span className="text-sm text-slate-900">{prescription.contactPhone}</span>
-                          </div>
-                        </td>
-                        <td className="px-6 py-4">
-                          <div className="flex items-center space-x-2">
-                            <Calendar className="h-4 w-4 text-slate-400" />
-                            <span className="text-sm text-slate-900">{formatDate(prescription.createdAt)}</span>
-                          </div>
-                        </td>
-                        <td className="px-6 py-4">
-                          <Badge
-                            variant={prescription.status === "Sent" ? "default" : "secondary"}
-                            className={
-                              prescription.status === "Sent"
-                                ? "bg-green-100 text-green-800"
-                                : "bg-orange-100 text-orange-800"
-                            }
-                          >
-                            {prescription.status}
-                          </Badge>
-                        </td>
-                        <td className="px-6 py-4 text-right">
-                          <div className="flex items-center justify-end space-x-2">
-                            <Button
-                              onClick={() => handleViewPrescription(prescription.id)}
-                              variant="outline"
-                              size="sm"
+                          </td>
+                          <td className="px-6 py-4">
+                            <div className="flex items-center space-x-2">
+                              <Calendar className="h-4 w-4 text-slate-400" />
+                              <span className="text-sm text-slate-900">{formatDate(prescription.createdAt)}</span>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4">
+                            <Badge
+                              variant={prescription.status === "Sent" ? "default" : "secondary"}
+                              className={
+                                prescription.status === "Sent"
+                                  ? "bg-green-100 text-green-800"
+                                  : "bg-orange-100 text-orange-800"
+                              }
                             >
-                              <Eye className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              onClick={() => handleDownloadPDF(prescription)}
-                              variant="outline"
-                              size="sm"
-                            >
-                              <Download className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              onClick={() => handleResendWhatsApp(prescription)}
-                              variant="outline"
-                              size="sm"
-                              className="text-green-600 hover:text-green-700"
-                            >
-                              <Send className="h-4 w-4" />
-                            </Button>
+                              {prescription.status}
+                            </Badge>
+                          </td>
+                          <td className="px-6 py-4 text-right">
+                            <div className="flex items-center justify-end space-x-2">
+                              <Button
+                                onClick={() => handleViewPrescription(prescription.id)}
+                                variant="outline"
+                                size="sm"
+                              >
+                                <Eye className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                onClick={() => handleDownloadPDF(prescription)}
+                                variant="outline"
+                                size="sm"
+                              >
+                                <Download className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                onClick={() => handleResendWhatsApp(prescription)}
+                                variant="outline"
+                                size="sm"
+                                className="text-green-600 hover:text-green-700"
+                              >
+                                <Send className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Mobile Cards */}
+                <div className="md:hidden divide-y divide-slate-200">
+                  {filteredPrescriptions.map((prescription) => (
+                    <div key={prescription.id} className="p-4 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <div className="bg-blue-100 p-2 rounded-full">
+                            <FileText className="h-4 w-4 text-blue-600" />
                           </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                          <div>
+                            <p className="text-sm font-medium text-slate-900">
+                              {prescription.patientName}
+                            </p>
+                            <p className="text-xs text-slate-600">{prescription.contactPhone}</p>
+                          </div>
+                        </div>
+                        <Badge
+                          variant={prescription.status === "Sent" ? "default" : "secondary"}
+                          className={
+                            prescription.status === "Sent"
+                              ? "bg-green-100 text-green-800"
+                              : "bg-orange-100 text-orange-800"
+                          }
+                        >
+                          {prescription.status}
+                        </Badge>
+                      </div>
+                      
+                      <div className="text-xs text-slate-600">
+                        {formatDate(prescription.createdAt)}
+                      </div>
+                      
+                      <div className="flex items-center space-x-2 pt-2">
+                        <Button
+                          onClick={() => handleViewPrescription(prescription.id)}
+                          variant="outline"
+                          size="sm"
+                          className="flex-1"
+                        >
+                          <Eye className="h-4 w-4 mr-1" />
+                          View
+                        </Button>
+                        <Button
+                          onClick={() => handleDownloadPDF(prescription)}
+                          variant="outline"
+                          size="sm"
+                          className="flex-1"
+                        >
+                          <Download className="h-4 w-4 mr-1" />
+                          PDF
+                        </Button>
+                        <Button
+                          onClick={() => handleResendWhatsApp(prescription)}
+                          variant="outline"
+                          size="sm"
+                          className="flex-1 text-green-600 hover:text-green-700"
+                        >
+                          <Send className="h-4 w-4 mr-1" />
+                          Send
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
             )}
           </CardContent>
         </Card>
