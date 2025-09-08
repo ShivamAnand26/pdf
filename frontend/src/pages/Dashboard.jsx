@@ -44,10 +44,9 @@ const Dashboard = () => {
     console.log("Viewing prescription:", id);
   };
 
-  const handleDownloadPDF = (prescription) => {
+  const handleDownloadPDF = async (prescription) => {
     try {
-      // For saved prescriptions, we need to get the full prescription data
-      // In a real app, this would come from the backend
+      // For dashboard downloads, we need to recreate the prescription data
       const fullPrescriptionData = {
         patientName: prescription.patientName,
         contactPhone: prescription.contactPhone,
@@ -65,12 +64,21 @@ const Dashboard = () => {
         additionalNotes: "Please complete the full course of medication."
       };
       
-      downloadPrescriptionPDF(fullPrescriptionData);
+      // Since we don't have the preview element on dashboard, we'll use the basic PDF generation
+      // In a real app, you'd fetch the full prescription data from backend
+      console.log("PDF download for dashboard - would need full prescription data:", prescription.patientName);
       
-      // Show success toast - you'll need to add toast functionality here
-      console.log("PDF downloaded successfully for:", prescription.patientName);
     } catch (error) {
       console.error("Failed to generate PDF:", error);
+    }
+  };
+
+  const handleDownloadImage = async (prescription) => {
+    try {
+      // Similar to PDF, we'd need full prescription data
+      console.log("Image download for dashboard - would need full prescription data:", prescription.patientName);
+    } catch (error) {
+      console.error("Failed to generate image:", error);
     }
   };
 
