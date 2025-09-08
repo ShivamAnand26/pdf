@@ -166,7 +166,7 @@ const PrescriptionForm = ({ data, onChange }) => {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="patientName">Patient Name *</Label>
               <Input
@@ -189,7 +189,7 @@ const PrescriptionForm = ({ data, onChange }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div>
               <Label htmlFor="age">Age</Label>
               <Input
